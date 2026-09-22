@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yesus Lahir Bagiku - Media Pembelajaran PAK SD Kelas 5</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Fredoka (Playful/Bold) & Quicksand (Friendly/Regular) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'night-sky': '#0F172A',
+                        'night-card': '#1E293B',
+                        'gold-star': '#F59E0B',
+                        'gold-light': '#FBBF24',
+                        'cream-bg': '#FFFBEB',
+                        'soft-cream': '#FEF3C7',
+                        'warm-yellow': '#FDE047',
+                        'olive-green': '#65A30D',
+                        'soft-brown': '#78350F',
+                        'cozy-red': '#DC2626'
+                    },
+                    fontFamily: {
+                        fredoka: ['Fredoka', 'sans-serif'],
+                        quicksand: ['Quicksand', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #0F172A;
+            color: #F8FAFC;
+            overflow-x: hidden;
+            user-select: none;
+        }
+
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        /* Background stars animation */
+        .star-bg {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle var(--duration, 3s) infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.3); filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.9)); }
+        }
+
+        /* Glowing aura effect */
+        .glow-gold {
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.4);
+        }
+        .glow-gold-lg {
+            box-shadow: 0 0 45px rgba(251, 191, 36, 0.6);
+        }
+
+        /* Floating Animation */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-float {
+            animation: floatSlow 4s ease-in-out infinite;
+        }
+
+        /* Pulse glow */
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+        .animate-pulse-glow {
+            animation: pulseGlow 2.5s infinite ease-in-out;
+        }
+
+        /* Candle Flicker */
+        @keyframes candleFlicker {
+            0%, 100% { transform: scale(1) rotate(-1deg); opacity: 0.9; }
+            25% { transform: scale(1.1) rotate(1deg); opacity: 1; }
+            50% { transform: scale(0.95) rotate(-0.5deg); opacity: 0.85; }
+            75% { transform: scale(1.05) rotate(0.5deg); opacity: 0.95; }
+        }
+        .candle-flame {
+            animation: candleFlicker 1.5s infinite ease-in-out;
+            transform-origin: bottom center;
+        }
+
+        /* Card flip logic */
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        .transform-style-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .flipped {
+            transform: rotateY(180deg);
+        }
+        .backface-hidden {
+            backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+
+        /* Custom scrollbars */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0F172A;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #F59E0B;
+            border-radius: 10px;
+        }
+
+        /* Sticky note rotation decoration */
+        .note-rotate-1 { transform: rotate(-1.5deg); }
+        .note-rotate-2 { transform: rotate(1.5deg); }
+        .note-rotate-3 { transform: rotate(-1deg); }
+        .note-rotate-4 { transform: rotate(2deg); }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between relative bg-night-sky text-slate-100 selection:bg-gold-star selection:text-night-sky">
+
+    <div id="starfield" class="fixed inset-0 pointer-events-none z-0 overflow-hidden"></div>
+
+    <!-- MAIN APP CONTAINER -->
+    <div class="relative z-10 flex flex-col min-h-screen">
+
+        <!-- TOP NAVIGATION HEADER -->
+        <header class="bg-slate-900/80 backdrop-blur-md border-b border-amber-500/30 sticky top-0 z-50 px-4 py-3 shadow-lg">
+            <div class="max-w-6xl mx-auto flex items-center justify-between gap-2">
+                <!-- Logo & Title -->
+                <div class="flex items-center gap-3 cursor-pointer" onclick="navigateTo('hero')">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-amber-500 to-yellow-300 flex items-center justify-center text-night-sky shadow-md text-xl font-bold">
+                        <i class="fa-solid font-star text-amber-900">★</i>
+                    </div>
+                    <div>
+                        <h1 class="text-lg md:text-xl font-bold text-amber-400 tracking-wide leading-none">Yesus Lahir Bagiku</h1>
+                        <p class="text-xs text-amber-200/80 hidden sm:block">Pendidikan Agama Kristen - SD Kelas 5</p>
+                    </div>
+                </div>
+
+                <!-- Progress Bar Section -->
+                <div class="flex-1 max-w-xs md:max-w-md mx-2">
+                    <div class="flex justify-between text-xs font-semibold mb-1 text-amber-200">
+                        <span><i class="fa-solid fa-map-location-dot mr-1"></i> Perjalanan ke Betlehem</span>
+                        <span id="progress-text">0%</span>
+                    </div>
+                    <div class="w-full h-3 bg-slate-800 rounded-full overflow-hidden border border-amber-500/30 p-0.5">
+                        <div id="progress-bar-inner" class="h-full bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-300 rounded-full transition-all duration-500 w-0 shadow-sm"></div>
+                    </div>
+                </div>
+
+                <!-- Header Actions -->
+                <div class="flex items-center gap-2">
+                    <button onclick="toggleAudioBg()" id="audio-toggle-btn" title="Musik Latar" class="w-9 h-9 rounded-full bg-slate-800 border border-amber-500/40 text-amber-400 hover:bg-amber-500 hover:text-night-sky transition flex items-center justify-center">
+                        <i class="fa-solid fa-music"></i>
+                    </button>
+                    <button onclick="navigateTo('peta')" title="Peta Belajar" class="px-3 py-1.5 rounded-full bg-amber-500 text-night-sky font-bold text-xs hover:bg-amber-400 transition flex items-center gap-1 shadow-md">
+                        <i class="fa-solid fa-map"></i>
+                        <span class="hidden sm:inline">Peta Menu</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- AVATAR GUIDANCE SPEECH BUBBLE -->
+        <div id="avatar-guide-bar" class="max-w-4xl mx-auto w-full px-4 pt-3 z-30 transition-all duration-300">
+            <div class="bg-gradient-to-r from-amber-900/90 via-slate-900/95 to-slate-900/90 border border-amber-400/40 rounded-2xl p-3 shadow-xl flex items-center gap-3 backdrop-blur-sm">
+                <div class="relative shrink-0">
+                    <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-b from-amber-300 to-amber-600 border-2 border-yellow-200 flex items-center justify-center text-2xl shadow-inner">
+                        👦🏻
+                    </div>
+                    <span class="absolute -bottom-1 -right-1 bg-amber-500 text-night-sky text-[10px] font-bold px-1.5 py-0.5 rounded-full">Samuel</span>
+                </div>
+                <div class="flex-1">
+                    <p id="avatar-guide-text" class="text-xs md:text-sm text-amber-100 font-medium leading-relaxed">
+                        Shalom! Halo teman-teman kelas 5! Yuk kita belajar tentang kasih Allah melalui kelahiran Tuhan Yesus!
+                    </p>
+                </div>
+                <button onclick="speakText(document.getElementById('avatar-guide-text').innerText)" class="text-amber-400 hover:text-yellow-300 p-2 text-lg shrink-0" title="Dengarkan Suara Avatar">
+                    <i class="fa-solid fa-volume-high"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- SCREEN VIEWS CONTAINER -->
+        <main class="flex-1 max-w-5xl w-full mx-auto p-4 md:p-6 my-2 relative z-20">
+
+            <!-- 1. HERO / HALAMAN PEMBUKA -->
+            <section id="screen-hero" class="screen-section space-y-6 text-center py-4">
+                <div class="relative max-w-3xl mx-auto bg-gradient-to-b from-slate-900/90 via-slate-800/80 to-amber-950/40 border border-amber-500/40 rounded-3xl p-6 md:p-10 backdrop-blur-md shadow-2xl overflow-hidden">
+                    
+                    <!-- Star of Bethlehem graphic -->
+                    <div class="absolute -top-6 left-1/2 -translate-x-1/2 text-center animate-float">
+                        <div class="text-amber-300 text-6xl md:text-7xl filter drop-shadow-[0_0_20px_rgba(251,191,36,0.9)]">
+                            ✦
+                        </div>
+                    </div>
+
+                    <div class="mt-8 space-y-4">
+                        <span class="inline-block px-4 py-1.5 rounded-full bg-amber-500/20 border border-amber-400/50 text-amber-300 text-xs font-bold uppercase tracking-widest">
+                            Pendidikan Agama Kristen • SD Kelas 5
+                        </span>
+                        
+                        <h1 class="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-300 to-amber-400 drop-shadow-md">
+                            Yesus Lahir Bagiku
+                        </h1>
+
+                        <p class="text-base md:text-lg text-amber-200/90 font-semibold max-w-xl mx-auto">
+                            Belajar tentang kasih Allah yang sangat besar melalui kelahiran Tuhan Yesus ke dunia.
+                        </p>
+
+                        <div class="bg-slate-900/60 border border-amber-500/20 rounded-2xl p-4 text-xs md:text-sm text-slate-200 leading-relaxed max-w-lg mx-auto shadow-inner">
+                            Kelahiran Yesus adalah kabar sukacita bagi semua manusia. Allah mengutus Yesus ke dunia karena kasih-Nya yang sangat besar untuk menyelamatkan kita!
+                        </div>
+
+                        <!-- Hero Graphic Illustration (3D Style Manger Scene SVG) -->
+                        <div class="py-4 flex justify-center">
+                            <div class="relative w-64 h-44 bg-gradient-to-t from-amber-950/80 to-slate-900/40 rounded-2xl border border-amber-500/30 flex items-center justify-center overflow-hidden shadow-2xl glow-gold">
+                                <!-- Rays of light -->
+                                <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-400/30 via-transparent to-transparent animate-pulse"></div>
+                                <div class="text-center z-10 space-y-1">
+                                    <div class="text-5xl">🛖 👶🏻 ⭐️</div>
+                                    <div class="text-xs font-bold text-amber-200">Kandang Betlehem</div>
+                                    <div class="text-[10px] text-amber-300/80">Lukas 2:11-14</div>
+                                </div>
+                                <div class="absolute bottom-2 left-4 text-2xl animate-bounce">🐑</div>
+                                <div class="absolute bottom-2 right-4 text-2xl animate-bounce" style="animation-delay: 0.5s;">🐑</div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 max-w-xl mx-auto">
+                            <button onclick="navigateTo('tujuan')" class="p-3 rounded-2xl bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-950 font-bold text-sm hover:scale-105 transition shadow-lg flex flex-col items-center gap-1">
+                                <span class="text-lg">🚀</span>
+                                <span>Mulai Belajar</span>
+                            </button>
+                            <button onclick="navigateTo('cerita')" class="p-3 rounded-2xl bg-slate-800 border border-amber-500/50 text-amber-300 font-bold text-sm hover:bg-amber-500 hover:text-slate-950 transition shadow-lg flex flex-col items-center gap-1">
+                                <span class="text-lg">📖</span>
+                                <span>Dengarkan Cerita</span>
+                            </button>
+                            <button onclick="navigateTo('games')" class="p-3 rounded-2xl bg-slate-800 border border-amber-500/50 text-amber-300 font-bold text-sm hover:bg-amber-500 hover:text-slate-950 transition shadow-lg flex flex-col items-center gap-1">
+                                <span class="text-lg">🎮</span>
+                                <span>Main Game</span>
+                            </button>
+                            <button onclick="navigateTo('doa')" class="p-3 rounded-2xl bg-slate-800 border border-amber-500/50 text-amber-300 font-bold text-sm hover:bg-amber-500 hover:text-slate-950 transition shadow-lg flex flex-col items-center gap-1">
+                                <span class="text-lg">🙏</span>
+                                <span>Doa Syukur</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. PETA BELAJAR (LEARNING MAP) -->
+            <section id="screen-peta" class="screen-section hidden space-y-6">
+                <div class="text-center space-y-2">
+                    <h2 class="text-2xl md:text-3xl font-bold text-amber-400">Peta Belajar ke Betlehem</h2>
+                    <p class="text-xs md:text-sm text-slate-300">Pilihlah pos pembelajaran untuk melanjutkan petualangan minimalismu!</p>
+                </div>
+
+                <div class="bg-slate-900/90 border border-amber-500/30 rounded-3xl p-6 relative overflow-hidden shadow-2xl">
+                    <!-- Path background grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 relative z-10">
+                        
+                        <!-- Menu Cards -->
+                        <div onclick="navigateTo('tujuan')" class="p-4 rounded-2xl bg-slate-800/90 border-2 border-amber-500/40 hover:border-amber-400 cursor-pointer transition transform hover:-translate-y-1 shadow-lg flex items-center gap-4 group">
+                            <div class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-400/50 flex items-center justify-center text-amber-300 text-2xl group-hover:scale-110 transition">🎯</div>
+                            <div>
+                                <h3 class="font-bold text-amber-300 group-hover:text-yellow-200">1. Tujuan Belajar</h3>
+                                <p class="text-xs text-slate-400">Target capaian kamu hari ini</p>
+                            </div>
+                        </div>
+
+                        <div onclick="navigateTo('cerita')" class="p-4 rounded-2xl bg-slate-800/90 border-2 border-amber-500/40 hover:border-amber-400 cursor-pointer transition transform hover:-translate-y-1 shadow-lg flex items-center gap-4 group">
+                            <div class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-400/50 flex items-center justify-center text-amber-300 text-2xl group-hover:scale-110 transition">📖</div>
+                            <div>
+                                <h3 class="font-bold text-amber-300 group-hover:text-yellow-200">2. Cerita Alkitab</h3>
+                                <p class="text-xs text-slate-400">Kisah Lukas 2:11-14 interaktif</p>
+                            </div>
+                        </div>
+
+                        <div onclick="navigateTo('ringkasan')" class="p-4 rounded-2xl bg-slate-800/90 border-2 border-amber-500/40 hover:border-amber-400 cursor-pointer transition transform hover:-translate-y-1 shadow-lg flex items-center gap-4 group">
+                            <div class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-400/50 flex items-center justify-center text-amber-300 text-2xl group-hover:scale-110 transition">📜</div>
+                            <div>
+                                <h3 class="font-bold text-amber-300 group-hover:text-yellow-200">3. Ringkasan Materi</h3>
+                                <p class="text-xs text-slate-400">Kartu pintar makna Natal</p>
+                            </div>
+                        </div>
+
+                        <div onclick="navigateTo('ayat')" class="p-4 rounded-2xl bg-slate-800/90 border-2 border-amber-500/40 hover:border-amber-400 cursor-pointer transition transform hover:-translate-y-1 shadow-lg flex items-center gap-4 group">
+                            <div class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-400/50 flex items-center justify-center text-amber-300 text-2xl group-hover:scale-110 transition">✨</div>
+                            <div>
+                                <h3 class="font-bold text-amber-300 group-hover:text-yellow-200">4. Ayat Alkitab</h3>
+                                <p class="text-xs text-slate-400">Ayat kunci Lukas 2:11 & Yoh 3:16</p>
+                            </div>
+                        </div>
+
+                        <div onclick="navigateTo('tokoh')" class="p-4 rounded-2xl bg-slate-800/90 border-2 border-amber-500/40 hover:border-amber-400 cursor-pointer transition transform hover:-translate-y-1 shadow-lg flex items-center gap-4 group">
+                            <div class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-400/50 flex items-center justify-center text-amber-300 text-2xl group-hover:scale-110 transition">👥</div>
+                            <div>
+                                <h3 class="font-bold text-amber-300 group-hover:text-yellow-200">5. Tokoh-Tokoh Natal</h3>
+                                <p class="text-xs text-slate-400">Kenal Maria, Yusuf, Majus dll.</p>
+                            </div>
+                        </div>
+
+                        <div onclick="navigateTo('games')" class="p-4 rounded-2xl bg-slate-800/90 border-2 border-amber-500/40 hover:border-amber-400 cursor-pointer transition transform hover:-translate-y-1 shadow-lg flex items-center gap-4 group">
+                            <div class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-400/50 flex items-center justify-center text-amber-300 text-2xl group-hover:scale-110 transition">🎮</div>
+                            <div>
+                                <h3 class="font-bold text-amber-300 group-hover:text-yellow-200">6. Mini Games Interaktif</h3>
+                                <p class="text-xs text-slate-400">5 Tantangan seru berhadiah badge</p>
+                            </div>
+                        </div>
+
+                        <div onclick="navigateTo('refleksi')" class="p-4 rounded-2xl bg-slate-800/90 border-2 border-amber-500/40 hover:border-amber-400 cursor-pointer transition transform hover:-translate-y-1 shadow-lg flex items-center gap-4 group">
+                            <div class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-400/50 flex items-center justify-center text-amber-300 text-2xl group-hover:scale-110 transition">📝</div>
+                            <div>
+                                <h3 class="font-bold text-amber-300 group-hover:text-yellow-200">7. Refleksi Anak</h3>
+                                <p class="text-xs text-slate-400">Tulis tanggapan hatimu</p>
+                            </div>
+                        </div>
+
+                        <div onclick="navigateTo('afirmasi')" class="p-4 rounded-2xl bg-slate-800/90 border-2 border-amber-500/40 hover:border-amber-400 cursor-pointer transition transform hover:-translate-y-1 shadow-lg flex items-center gap-4 group">
+                            <div class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-400/50 flex items-center justify-center text-amber-300 text-2xl group-hover:scale-110 transition">💖</div>
+                            <div>
+                                <h3 class="font-bold text-amber-300 group-hover:text-yellow-200">8. Afirmasi Iman</h3>
+                                <p class="text-xs text-slate-400">Komitmen iman pribadi</p>
+                            </div>
+                        </div>
+
+                        <div onclick="navigateTo('doa')" class="p-4 rounded-2xl bg-slate-800/90 border-2 border-amber-500/40 hover:border-amber-400 cursor-pointer transition transform hover:-translate-y-1 shadow-lg flex items-center gap-4 group">
+                            <div class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-400/50 flex items-center justify-center text-amber-300 text-2xl group-hover:scale-110 transition">🙏</div>
+                            <div>
+                                <h3 class="font-bold text-amber-300 group-hover:text-yellow-200">9. Doa Syukur & Penutup</h3>
+                                <p class="text-xs text-slate-400">Mendoakan rasa syukurmu</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. TUJUAN PEMBELAJARAN -->
+            <section id="screen-tujuan" class="screen-section hidden space-y-6">
+                <div class="text-center space-y-2">
+                    <span class="px-3 py-1 bg-amber-500/20 text-amber-300 border border-amber-400/30 rounded-full text-xs font-bold">Langkah 1</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-amber-400">Tujuan Pembelajaran Kita</h2>
+                    <p class="text-xs md:text-sm text-slate-300">Setelah belajar bab ini, teman-teman dapat mencapai 6 hal hebat berikut:</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    
+                    <div class="bg-slate-800/90 border border-amber-500/30 rounded-2xl p-5 hover:border-amber-400 transition shadow-lg flex items-start gap-3">
+                        <div class="text-2xl p-2 bg-amber-500/20 rounded-xl border border-amber-400/30 shrink-0">⭐</div>
+                        <div>
+                            <h3 class="font-bold text-amber-300 text-sm mb-1">1. Alasan Yesus Lahir</h3>
+                            <p class="text-xs text-slate-200">Siswa dapat menjelaskan alasan Yesus lahir ke dunia untuk menyelamatkan manusia.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-800/90 border border-amber-500/30 rounded-2xl p-5 hover:border-amber-400 transition shadow-lg flex items-start gap-3">
+                        <div class="text-2xl p-2 bg-amber-500/20 rounded-xl border border-amber-400/30 shrink-0">👥</div>
+                        <div>
+                            <h3 class="font-bold text-amber-300 text-sm mb-1">2. Tokoh Kisah Natal</h3>
+                            <p class="text-xs text-slate-200">Siswa dapat menyebutkan tokoh-tokoh dalam kisah kelahiran Tuhan Yesus.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-800/90 border border-amber-500/30 rounded-2xl p-5 hover:border-amber-400 transition shadow-lg flex items-start gap-3">
+                        <div class="text-2xl p-2 bg-amber-500/20 rounded-xl border border-amber-400/30 shrink-0">✝️</div>
+                        <div>
+                            <h3 class="font-bold text-amber-300 text-sm mb-1">3. Yesus Juru Selamat</h3>
+                            <p class="text-xs text-slate-200">Siswa dapat memahami bahwa Yesus adalah Juru Selamat tunggal bagi manusia.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-800/90 border border-amber-500/30 rounded-2xl p-5 hover:border-amber-400 transition shadow-lg flex items-start gap-3">
+                        <div class="text-2xl p-2 bg-amber-500/20 rounded-xl border border-amber-400/30 shrink-0">❤️</div>
+                        <div>
+                            <h3 class="font-bold text-amber-300 text-sm mb-1">4. Bukti Kasih Allah</h3>
+                            <p class="text-xs text-slate-200">Siswa dapat menjelaskan kelahiran Yesus sebagai bukti kasih Allah yang terbesar.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-800/90 border border-amber-500/30 rounded-2xl p-5 hover:border-amber-400 transition shadow-lg flex items-start gap-3">
+                        <div class="text-2xl p-2 bg-amber-500/20 rounded-xl border border-amber-400/30 shrink-0">🙌</div>
+                        <div>
+                            <h3 class="font-bold text-amber-300 text-sm mb-1">5. Sikap Bersyukur</h3>
+                            <p class="text-xs text-slate-200">Siswa dapat menunjukkan sikap syukur atas kelahiran Yesus dalam hidup sehari-hari.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-800/90 border border-amber-500/30 rounded-2xl p-5 hover:border-amber-400 transition shadow-lg flex items-start gap-3">
+                        <div class="text-2xl p-2 bg-amber-500/20 rounded-xl border border-amber-400/30 shrink-0">📜</div>
+                        <div>
+                            <h3 class="font-bold text-amber-300 text-sm mb-1">6. Doa Syukur</h3>
+                            <p class="text-xs text-slate-200">Siswa dapat menyusun doa syukur sederhana kepada Tuhan Yesus.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="flex justify-center pt-4">
+                    <button onclick="navigateTo('cerita')" class="px-6 py-3 rounded-2xl bg-amber-500 text-night-sky font-bold hover:bg-amber-400 transition shadow-lg flex items-center gap-2">
+                        <span>Lanjut ke Cerita Alkitab</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- 4. CERITA ALKITAB INTERAKTIF (6 SCENES) -->
+            <section id="screen-cerita" class="screen-section hidden space-y-6">
+                <div class="text-center space-y-2">
+                    <span class="px-3 py-1 bg-amber-500/20 text-amber-300 border border-amber-400/30 rounded-full text-xs font-bold">Lukas 2:11–14</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-amber-400">Kisah Kelahiran Yesus</h2>
+                    <p class="text-xs md:text-sm text-slate-300">Tekan tombol 'Lanjut' untuk mengikuti adegan demi adegan.</p>
+                </div>
+
+                <!-- Scene Display Box -->
+                <div class="bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 border-2 border-amber-500/40 rounded-3xl p-6 md:p-8 shadow-2xl relative">
+                    
+                    <!-- Scene Progress Indicator -->
+                    <div class="flex justify-between items-center mb-6 border-b border-amber-500/20 pb-3">
+                        <span id="scene-counter-badge" class="text-xs font-bold px-3 py-1 bg-amber-500/20 text-amber-300 rounded-full border border-amber-400/30">
+                            Scene 1 dari 6
+                        </span>
+                        <div class="flex gap-1" id="scene-dots">
+                            <!-- JS populated dots -->
+                        </div>
+                    </div>
+
+                    <!-- Scene Content Container -->
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                        
+                        <!-- Visual Illustration -->
+                        <div class="md:col-span-5 flex justify-center">
+                            <div id="scene-visual" class="w-full h-56 md:h-64 rounded-2xl bg-slate-950 border border-amber-500/30 flex flex-col items-center justify-center p-4 text-center glow-gold relative overflow-hidden">
+                                <!-- Graphic SVG or Emojis -->
+                                <div id="scene-emoji" class="text-6xl md:text-7xl mb-2 animate-bounce">👼🏻✨</div>
+                                <h4 id="scene-title-badge" class="font-bold text-amber-300 text-sm">Kabar Sukacita</h4>
+                            </div>
+                        </div>
+
+                        <!-- Story Text & Verse -->
+                        <div class="md:col-span-7 space-y-4 text-left">
+                            <h3 id="scene-title" class="text-xl md:text-2xl font-bold text-amber-300">
+                                Scene 1: Kabar Sukacita
+                            </h3>
+                            <p id="scene-text" class="text-sm md:text-base text-slate-100 leading-relaxed bg-slate-950/50 p-4 rounded-xl border border-amber-500/20">
+                                Pada suatu malam, malaikat Tuhan datang membawa kabar sukacita. Kabar itu sangat penting bagi semua manusia, karena Allah mengutus Yesus Kristus ke dunia sebagai Juru Selamat.
+                            </p>
+
+                            <!-- Optional Verse Modal Box -->
+                            <div id="scene-verse-box" class="hidden bg-amber-950/40 border border-amber-400/50 p-3 rounded-xl text-xs text-amber-200">
+                                <i class="fa-solid fa-book-bible mr-1 text-amber-400"></i>
+                                <span id="scene-verse-text">Lukas 2:11 - "Hari ini telah lahir bagimu Juruselamat, yaitu Kristus, Tuhan, di kota Daud."</span>
+                            </div>
+
+                            <!-- Scene Navigation Buttons -->
+                            <div class="flex flex-wrap gap-2 pt-2">
+                                <button onclick="prevScene()" id="btn-scene-prev" class="px-4 py-2 rounded-xl bg-slate-800 border border-amber-500/30 text-xs font-bold text-amber-300 hover:bg-slate-700 transition">
+                                    <i class="fa-solid fa-chevron-left mr-1"></i> Kembali
+                                </button>
+                                <button onclick="nextScene()" id="btn-scene-next" class="px-4 py-2 rounded-xl bg-amber-500 text-night-sky text-xs font-bold hover:bg-amber-400 transition shadow-md">
+                                    Lanjut <i class="fa-solid fa-chevron-right ml-1"></i>
+                                </button>
+                                <button onclick="speakSceneText()" class="px-3 py-2 rounded-xl bg-slate-800 border border-amber-500/40 text-amber-300 text-xs font-bold hover:bg-amber-500 hover:text-slate-950 transition">
+                                    <i class="fa-solid fa-volume-high mr-1"></i> Putar Narasi
+                                </button>
+                                <button onclick="toggleSceneVerse()" class="px-3 py-2 rounded-xl bg-slate-800 border border-amber-500/40 text-amber-300 text-xs font-bold hover:bg-amber-500 hover:text-slate-950 transition">
+                                    <i class="fa-solid fa-scroll mr-1"></i> Tampilkan Ayat
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. RINGKASAN MATERI (6 FLIP CARDS) -->
+            <section id="screen-ringkasan" class="screen-section hidden space-y-6">
+                <div class="text-center space-y-2">
+                    <span class="px-3 py-1 bg-amber-500/20 text-amber-300 border border-amber-400/30 rounded-full text-xs font-bold">Ringkasan Materi</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-amber-400">6 Makna Kelahiran Yesus</h2>
+                    <p class="text-xs md:text-sm text-slate-300">Klik atau sentuh setiap kartu di bawah ini untuk melihat keterangannya!</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    
+                    <!-- Card 1 -->
+                    <div onclick="flipCard(this)" class="perspective-1000 h-48 cursor-pointer group">
+                        <div class="transform-style-3d relative w-full h-full duration-500 rounded-2xl shadow-xl">
+                            <div class="backface-hidden absolute inset-0 bg-slate-800 border-2 border-amber-500/40 rounded-2xl p-5 flex flex-col justify-between group-hover:border-amber-400 transition">
+                                <div class="text-3xl">🔑</div>
+                                <h3 class="font-bold text-amber-300 text-base">Kartu 1: Kebutuhan Keselamatan</h3>
+                                <span class="text-[11px] text-amber-400/80 font-semibold">Klik untuk buka &rarr;</span>
+                            </div>
+                            <div class="rotate-y-180 backface-hidden absolute inset-0 bg-gradient-to-br from-amber-950 to-slate-900 border-2 border-amber-400 rounded-2xl p-5 flex flex-col justify-center text-center">
+                                <h4 class="font-bold text-amber-300 text-sm mb-2">Manusia Membutuhkan Keselamatan</h4>
+                                <p class="text-xs text-slate-100 leading-relaxed">Semua manusia telah jatuh ke dalam dosa dan tidak bisa menyelamatkan dirinya sendiri. Manusia membutuhkan keselamatan dari Allah.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div onclick="flipCard(this)" class="perspective-1000 h-48 cursor-pointer group">
+                        <div class="transform-style-3d relative w-full h-full duration-500 rounded-2xl shadow-xl">
+                            <div class="backface-hidden absolute inset-0 bg-slate-800 border-2 border-amber-500/40 rounded-2xl p-5 flex flex-col justify-between group-hover:border-amber-400 transition">
+                                <div class="text-3xl">❤️</div>
+                                <h3 class="font-bold text-amber-300 text-base">Kartu 2: Allah Mengasihi Manusia</h3>
+                                <span class="text-[11px] text-amber-400/80 font-semibold">Klik untuk buka &rarr;</span>
+                            </div>
+                            <div class="rotate-y-180 backface-hidden absolute inset-0 bg-gradient-to-br from-amber-950 to-slate-900 border-2 border-amber-400 rounded-2xl p-5 flex flex-col justify-center text-center">
+                                <h4 class="font-bold text-amber-300 text-sm mb-2">Kasih Allah Yang Besar</h4>
+                                <p class="text-xs text-slate-100 leading-relaxed">Allah sangat mengasihi manusia. Kasih Allah dinyatakan secara nyata melalui rencana keselamatan-Nya yang ajaib.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div onclick="flipCard(this)" class="perspective-1000 h-48 cursor-pointer group">
+                        <div class="transform-style-3d relative w-full h-full duration-500 rounded-2xl shadow-xl">
+                            <div class="backface-hidden absolute inset-0 bg-slate-800 border-2 border-amber-500/40 rounded-2xl p-5 flex flex-col justify-between group-hover:border-amber-400 transition">
+                                <div class="text-3xl">🕊️</div>
+                                <h3 class="font-bold text-amber-300 text-base">Kartu 3: Yesus Diutus ke Dunia</h3>
+                                <span class="text-[11px] text-amber-400/80 font-semibold">Klik me balik &rarr;</span>
+                            </div>
+                            <div class="rotate-y-180 backface-hidden absolute inset-0 bg-gradient-to-br from-amber-950 to-slate-900 border-2 border-amber-400 rounded-2xl p-5 flex flex-col justify-center text-center">
+                                <h4 class="font-bold text-amber-300 text-sm mb-2">Utusan Keselamatan</h4>
+                                <p class="text-xs text-slate-100 leading-relaxed">Allah mengutus Anak-Nya yang tunggal, Yesus Kristus, ke dunia untuk menjadi Juru Selamat bagi seluruh umat manusia.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div onclick="flipCard(this)" class="perspective-1000 h-48 cursor-pointer group">
+                        <div class="transform-style-3d relative w-full h-full duration-500 rounded-2xl shadow-xl">
+                            <div class="backface-hidden absolute inset-0 bg-slate-800 border-2 border-amber-500/40 rounded-2xl p-5 flex flex-col justify-between group-hover:border-amber-400 transition">
+                                <div class="text-3xl">🛖</div>
+                                <h3 class="font-bold text-amber-300 text-base">Kartu 4: Lahir di Betlehem</h3>
+                                <span class="text-[11px] text-amber-400/80 font-semibold">Klik untuk buka &rarr;</span>
+                            </div>
+                            <div class="rotate-y-180 backface-hidden absolute inset-0 bg-gradient-to-br from-amber-950 to-slate-900 border-2 border-amber-400 rounded-2xl p-5 flex flex-col justify-center text-center">
+                                <h4 class="font-bold text-amber-300 text-sm mb-2">Lahir dalam Kesederhanaan</h4>
+                                <p class="text-xs text-slate-100 leading-relaxed">Yesus lahir di kota Betlehem dalam keadaan sangat sederhana, dibungkus kain lampin, dan dibaringkan di palungan tempat makan domba.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div onclick="flipCard(this)" class="perspective-1000 h-48 cursor-pointer group">
+                        <div class="transform-style-3d relative w-full h-full duration-500 rounded-2xl shadow-xl">
+                            <div class="backface-hidden absolute inset-0 bg-slate-800 border-2 border-amber-500/40 rounded-2xl p-5 flex flex-col justify-between group-hover:border-amber-400 transition">
+                                <div class="text-3xl">🎁</div>
+                                <h3 class="font-bold text-amber-300 text-base">Kartu 5: Bukti Kasih Allah</h3>
+                                <span class="text-[11px] text-amber-400/80 font-semibold">Klik untuk buka &rarr;</span>
+                            </div>
+                            <div class="rotate-y-180 backface-hidden absolute inset-0 bg-gradient-to-br from-amber-950 to-slate-900 border-2 border-amber-400 rounded-2xl p-5 flex flex-col justify-center text-center">
+                                <h4 class="font-bold text-amber-300 text-sm mb-2">Hadiah Terindah dari Surga</h4>
+                                <p class="text-xs text-slate-100 leading-relaxed">Kelahiran Yesus membuktikan bahwa Allah tidak pernah meninggalkan kita. Ia sangat peduli dan mengasihi kamu dan saya!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 6 -->
+                    <div onclick="flipCard(this)" class="perspective-1000 h-48 cursor-pointer group">
+                        <div class="transform-style-3d relative w-full h-full duration-500 rounded-2xl shadow-xl">
+                            <div class="backface-hidden absolute inset-0 bg-slate-800 border-2 border-amber-500/40 rounded-2xl p-5 flex flex-col justify-between group-hover:border-amber-400 transition">
+                                <div class="text-3xl">🌟</div>
+                                <h3 class="font-bold text-amber-300 text-base">Kartu 6: Sikap Syukur</h3>
+                                <span class="text-[11px] text-amber-400/80 font-semibold">Klik untuk buka &rarr;</span>
+                            </div>
+                            <div class="rotate-y-180 backface-hidden absolute inset-0 bg-gradient-to-br from-amber-950 to-slate-900 border-2 border-amber-400 rounded-2xl p-5 flex flex-col justify-center text-center">
+                                <h4 class="font-bold text-amber-300 text-sm mb-2">Menunjukkan Rasa Syukur</h4>
+                                <p class="text-xs text-slate-100 leading-relaxed">Rasa syukur kita tunjukkan dengan hidup taat, rajin berdoa, mengasihi sesama, dan melakukan perintah Tuhan Yesus setiap hari.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- 6. AYAT ALKITAB UTAMA & PENDUKUNG -->
+            <section id="screen-ayat" class="screen-section hidden space-y-6">
+                <div class="text-center space-y-2">
+                    <span class="px-3 py-1 bg-amber-500/20 text-amber-300 border border-amber-400/30 rounded-full text-xs font-bold">Ayat Alkitab Kunci</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-amber-400">Firman Tuhan Hari Ini</h2>
+                    <p class="text-xs md:text-sm text-slate-300">Mari membaca dan menghafalkan ayat Alkitab tentang kelahiran Yesus!</p>
+                </div>
+
+                <!-- Main Verse Scroll Card -->
+                <div class="bg-gradient-to-r from-amber-950/90 via-yellow-950/80 to-amber-950/90 border-2 border-amber-400/60 rounded-3xl p-6 md:p-8 shadow-2xl relative glow-gold text-center space-y-4">
+                    <div class="text-4xl text-amber-300">📜</div>
+                    <span class="text-xs uppercase font-bold text-amber-300 tracking-wider">Ayat Utama • Lukas 2:11</span>
+                    
+                    <blockquote class="text-lg md:text-2xl font-bold text-yellow-100 italic leading-snug max-w-2xl mx-auto">
+                        “Hari ini telah lahir bagimu Juruselamat, yaitu Kristus, Tuhan, di kota Daud.”
+                    </blockquote>
+
+                    <div class="flex justify-center gap-3 pt-3">
+                        <button onclick="speakText('Lukas pasal 2 ayat 11: Hari ini telah lahir bagimu Juruselamat, yaitu Kristus, Tuhan, di kota Daud.')" class="px-4 py-2 rounded-xl bg-amber-500 text-night-sky text-xs font-bold hover:bg-amber-400 transition shadow-md flex items-center gap-2">
+                            <i class="fa-solid fa-volume-high"></i>
+                            <span>Dengarkan Ayat</span>
+                        </button>
+                        <button onclick="showToast('Mari baca bersama-sama dengan suara yang nyaring!')" class="px-4 py-2 rounded-xl bg-slate-800 border border-amber-400/40 text-amber-300 text-xs font-bold hover:bg-slate-700 transition flex items-center gap-2">
+                            <i class="fa-solid fa-users"></i>
+                            <span>Baca Bersama</span>
+                        </button>
+                        <button onclick="showToast('Ulangi membaca 3 kali agar lancar menghafal!')" class="px-4 py-2 rounded-xl bg-slate-800 border border-amber-400/40 text-amber-300 text-xs font-bold hover:bg-slate-700 transition flex items-center gap-2">
+                            <i class="fa-solid fa-brain"></i>
+                            <span>Hafalkan Ayat</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Supporting Verse Heart Card -->
+                <div class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border border-amber-500/30 rounded-3xl p-6 shadow-xl flex flex-col md:flex-row items-center gap-6">
+                    <div class="text-5xl shrink-0 p-4 bg-rose-500/20 border border-rose-400/30 rounded-2xl text-rose-300">💖</div>
+                    <div class="space-y-2 text-center md:text-left">
+                        <span class="text-xs font-bold text-rose-300 bg-rose-500/20 px-2.5 py-1 rounded-full border border-rose-400/30">Ayat Pendukung • Yohanes 3:16</span>
+                        <blockquote class="text-sm md:text-base font-semibold text-slate-100 italic">
+                            “Karena begitu besar kasih Allah akan dunia ini, sehingga Ia telah mengaruniakan Anak-Nya yang tunggal, supaya setiap orang yang percaya kepada-Nya tidak binasa, melainkan beroleh hidup yang kekal.”
+                        </blockquote>
+                        <p class="text-xs text-amber-200/90 pt-1">
+                            <i class="fa-solid fa-lightbulb text-amber-400 mr-1"></i>
+                            Penjelasan: Ayat ini mengingatkan bahwa kelahiran Tuhan Yesus adalah bukti tertinggi betapa besar kasih Allah kepada setiap manusia di dunia.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. TOKOH-TOKOH DALAM KISAH NATAL -->
+            <section id="screen-tokoh" class="screen-section hidden space-y-6">
+                <div class="text-center space-y-2">
+                    <span class="px-3 py-1 bg-amber-500/20 text-amber-300 border border-amber-400/30 rounded-full text-xs font-bold">Tokoh Natal</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-amber-400">Tokoh-Tokoh Kisah Kelahiran Yesus</h2>
+                    <p class="text-xs md:text-sm text-slate-300">Klik salah satu karakter untuk membaca penjelasannya!</p>
+                </div>
+
+                <!-- Character selector grid -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+                    <button onclick="selectCharacter(0)" class="char-btn p-3 rounded-2xl bg-slate-800 border-2 border-amber-500/30 hover:border-amber-400 transition flex flex-col items-center text-center gap-2 group">
+                        <div class="text-4xl group-hover:scale-110 transition">👩🏻‍🍼</div>
+                        <span class="font-bold text-xs text-amber-300">Maria</span>
+                    </button>
+
+                    <button onclick="selectCharacter(1)" class="char-btn p-3 rounded-2xl bg-slate-800 border-2 border-amber-500/30 hover:border-amber-400 transition flex flex-col items-center text-center gap-2 group">
+                        <div class="text-4xl group-hover:scale-110 transition">🧔🏻‍♂️</div>
+                        <span class="font-bold text-xs text-amber-300">Yusuf</span>
+                    </button>
+
+                    <button onclick="selectCharacter(2)" class="char-btn p-3 rounded-2xl bg-slate-800 border-2 border-amber-500/30 hover:border-amber-400 transition flex flex-col items-center text-center gap-2 group">
+                        <div class="text-4xl group-hover:scale-110 transition">👼🏻</div>
+                        <span class="font-bold text-xs text-amber-300">Malaikat</span>
+                    </button>
+
+                    <button onclick="selectCharacter(3)" class="char-btn p-3 rounded-2xl bg-slate-800 border-2 border-amber-500/30 hover:border-amber-400 transition flex flex-col items-center text-center gap-2 group">
+                        <div class="text-4xl group-hover:scale-110 transition">🧔🏻🐑</div>
+                        <span class="font-bold text-xs text-amber-300">Para Gembala</span>
+                    </button>
+
+                    <button onclick="selectCharacter(4)" class="char-btn p-3 rounded-2xl bg-slate-800 border-2 border-amber-500/30 hover:border-amber-400 transition flex flex-col items-center text-center gap-2 group">
+                        <div class="text-4xl group-hover:scale-110 transition">🤴🏽🎁</div>
+                        <span class="font-bold text-xs text-amber-300">Orang Majus</span>
+                    </button>
+
+                    <button onclick="selectCharacter(5)" class="char-btn p-3 rounded-2xl bg-slate-800 border-2 border-amber-500/30 hover:border-amber-400 transition flex flex-col items-center text-center gap-2 group">
+                        <div class="text-4xl group-hover:scale-110 transition">👶🏻⭐️</div>
+                        <span class="font-bold text-xs text-amber-300">Bayi Yesus</span>
+                    </button>
+                </div>
+
+                <!-- Selected Character Modal / Box -->
+                <div id="char-detail-box" class="bg-gradient-to-b from-slate-900 to-amber-950/40 border-2 border-amber-400/50 rounded-3xl p-6 shadow-2xl flex flex-col md:flex-row items-center gap-6">
+                    <div id="char-detail-avatar" class="text-7xl p-6 bg-slate-800/80 border border-amber-400/40 rounded-3xl shadow-inner glow-gold animate-float shrink-0">
+                        👩🏻‍🍼
+                    </div>
+                    <div class="space-y-3 text-center md:text-left flex-1">
+                        <h3 id="char-detail-name" class="text-2xl font-bold text-amber-300">Maria</h3>
+                        <p id="char-detail-role" class="text-xs font-semibold text-amber-400 uppercase tracking-wider">Ibu Yesus yang Taat</p>
+                        <p id="char-detail-desc" class="text-sm text-slate-100 leading-relaxed bg-slate-900/60 p-4 rounded-2xl border border-amber-500/20">
+                            Maria adalah ibu Yesus yang taat kepada kehendak Allah. Saat malaikat menyampaikan bahwa ia akan melahirkan Juru Selamat, Maria merespons dengan penuh kerendahan hati dan iman.
+                        </p>
+                        <button id="char-detail-sound-btn" onclick="speakCharacterDesc()" class="px-4 py-2 rounded-xl bg-amber-500 text-night-sky text-xs font-bold hover:bg-amber-400 transition flex items-center gap-2 mx-auto md:mx-0">
+                            <i class="fa-solid fa-volume-high"></i>
+                            <span>Dengarkan Karakter</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 8. GAMES INTERAKTIF HUB & 5 MINI GAMES -->
+            <section id="screen-games" class="screen-section hidden space-y-6">
+                <div class="text-center space-y-2">
+                    <span class="px-3 py-1 bg-amber-500/20 text-amber-300 border border-amber-400/30 rounded-full text-xs font-bold">Game Pembelajaran</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-amber-400">Mini Games Natal Interaktif</h2>
+                    <p class="text-xs md:text-sm text-slate-300">Selesaikan ke-5 tantangan di bawah ini untuk membuka Badge Penghargaan!</p>
+                </div>
+
+                <!-- Games Tab Menu -->
+                <div class="flex flex-wrap justify-center gap-2 border-b border-amber-500/20 pb-3">
+                    <button onclick="switchGame(1)" id="game-tab-1" class="game-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-amber-500 text-night-sky">Game 1: Urutkan Cerita</button>
+                    <button onclick="switchGame(2)" id="game-tab-2" class="game-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-800 border border-amber-500/30 text-amber-300">Game 2: Tebak Tokoh</button>
+                    <button onclick="switchGame(3)" id="game-tab-3" class="game-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-800 border border-amber-500/30 text-amber-300">Game 3: Memilah Sikap</button>
+                    <button onclick="switchGame(4)" id="game-tab-4" class="game-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-800 border border-amber-500/30 text-amber-300">Game 4: Lengkapi Ayat</button>
+                    <button onclick="switchGame(5)" id="game-tab-5" class="game-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-800 border border-amber-500/30 text-amber-300">Game 5: Jodohkan Peran</button>
+                </div>
+
+                <!-- GAME CONTAINER BOX -->
+                <div class="bg-slate-900/90 border-2 border-amber-500/40 rounded-3xl p-6 shadow-2xl min-h-[350px]">
+                    
+                    <!-- GAME 1: SUSUN URUTAN CERITA -->
+                    <div id="minigame-1" class="minigame-box space-y-4">
+                        <div class="text-center space-y-1">
+                            <h3 class="font-bold text-lg text-amber-300">Game 1: Susun Urutan Cerita Natal</h3>
+                            <p class="text-xs text-slate-300">Klik tombol urutan untuk menyusun peristiwa kelahiran Yesus secara benar!</p>
+                        </div>
+                        <div id="g1-cards-container" class="space-y-2 max-w-xl mx-auto">
+                            <!-- JS populated list -->
+                        </div>
+                        <div class="flex justify-center pt-2">
+                            <button onclick="checkGame1()" class="px-6 py-2.5 rounded-xl bg-amber-500 text-night-sky font-bold text-xs hover:bg-amber-400 transition shadow-md">
+                                Periksa Urutan
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- GAME 2: TEBAK TOKOH -->
+                    <div id="minigame-2" class="minigame-box hidden space-y-4">
+                        <div class="text-center space-y-1">
+                            <h3 class="font-bold text-lg text-amber-300">Game 2: Tebak Tokoh Alkitab</h3>
+                            <p class="text-xs text-slate-300" id="g2-progress-text">Soal 1 dari 5</p>
+                        </div>
+                        <div class="bg-slate-950 p-5 rounded-2xl border border-amber-500/30 text-center space-y-4 max-w-lg mx-auto">
+                            <p id="g2-question-text" class="text-sm font-semibold text-amber-200">
+                                Aku menjaga domba di padang pada malam hari. Siapakah aku?
+                            </p>
+                            <div id="g2-options-container" class="grid grid-cols-2 gap-3">
+                                <!-- JS options -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GAME 3: MEMILAH SIKAP BERSYUKUR -->
+                    <div id="minigame-3" class="minigame-box hidden space-y-4">
+                        <div class="text-center space-y-1">
+                            <h3 class="font-bold text-lg text-amber-300">Game 3: Pilih Sikap yang Benar</h3>
+                            <p class="text-xs text-slate-300">Klik pernyataan di bawah untuk mengelompokkannya ke Keranjang Bintang (Baik) atau Awan Abu-abu (Buruk)!</p>
+                        </div>
+                        
+                        <div id="g3-current-item-box" class="bg-slate-950 p-4 rounded-2xl border border-amber-500/30 text-center max-w-md mx-auto space-y-3">
+                            <p id="g3-item-text" class="text-sm font-bold text-yellow-200">Berdoa kepada Tuhan</p>
+                            <div class="flex justify-center gap-3">
+                                <button onclick="sortGame3Action(true)" class="px-4 py-2 rounded-xl bg-emerald-600 text-white font-bold text-xs hover:bg-emerald-500 transition shadow">
+                                    ⭐ Masuk Keranjang Bintang (Sikap Baik)
+                                </button>
+                                <button onclick="sortGame3Action(false)" class="px-4 py-2 rounded-xl bg-slate-700 text-slate-200 font-bold text-xs hover:bg-slate-600 transition shadow">
+                                    ☁️ Masuk Awan Abu (Sikap Salah)
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4 max-w-lg mx-auto pt-2">
+                            <div class="bg-amber-950/40 border border-amber-400/40 p-3 rounded-2xl text-center space-y-1">
+                                <span class="text-2xl">⭐</span>
+                                <h4 class="text-xs font-bold text-amber-300">Keranjang Bintang</h4>
+                                <div id="g3-good-count" class="text-lg font-bold text-amber-400">0 Sikap</div>
+                            </div>
+                            <div class="bg-slate-800/60 border border-slate-600 p-3 rounded-2xl text-center space-y-1">
+                                <span class="text-2xl">☁️</span>
+                                <h4 class="text-xs font-bold text-slate-300">Awan Abu-abu</h4>
+                                <div id="g3-bad-count" class="text-lg font-bold text-slate-400">0 Sikap</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GAME 4: LENGKAPI AYAT -->
+                    <div id="minigame-4" class="minigame-box hidden space-y-4">
+                        <div class="text-center space-y-1">
+                            <h3 class="font-bold text-lg text-amber-300">Game 4: Lengkapi Ayat Lukas 2:11</h3>
+                            <p class="text-xs text-slate-300">Pilihlah kata yang tepat untuk mengisi titik-titik di bawah ini!</p>
+                        </div>
+                        <div class="bg-slate-950 p-6 rounded-2xl border border-amber-500/30 text-center max-w-lg mx-auto space-y-4">
+                            <p class="text-base font-bold text-yellow-100 leading-relaxed">
+                                “Hari ini telah lahir bagimu <span class="text-amber-400 underline decoration-dashed decoration-2 px-2">[ . . . . . . . . ]</span>, yaitu Kristus, Tuhan, di kota Daud.”
+                            </p>
+                            <div class="grid grid-cols-2 gap-3 pt-2">
+                                <button onclick="answerGame4('Juruselamat')" class="p-3 rounded-xl bg-slate-800 border border-amber-500/40 text-amber-300 font-bold text-xs hover:bg-amber-500 hover:text-night-sky transition">
+                                    A. Juruselamat
+                                </button>
+                                <button onclick="answerGame4('Raja dunia')" class="p-3 rounded-xl bg-slate-800 border border-amber-500/40 text-amber-300 font-bold text-xs hover:bg-amber-500 hover:text-night-sky transition">
+                                    B. Raja dunia
+                                </button>
+                                <button onclick="answerGame4('Gembala')" class="p-3 rounded-xl bg-slate-800 border border-amber-500/40 text-amber-300 font-bold text-xs hover:bg-amber-500 hover:text-night-sky transition">
+                                    C. Gembala
+                                </button>
+                                <button onclick="answerGame4('Malaikat')" class="p-3 rounded-xl bg-slate-800 border border-amber-500/40 text-amber-300 font-bold text-xs hover:bg-amber-500 hover:text-night-sky transition">
+                                    D. Malaikat
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GAME 5: COCOKKAN TOKOH DAN PERAN -->
+                    <div id="minigame-5" class="minigame-box hidden space-y-4">
+                        <div class="text-center space-y-1">
+                            <h3 class="font-bold text-lg text-amber-300">Game 5: Pasangkan Tokoh dan Peran</h3>
+                            <p class="text-xs text-slate-300">Klik tokoh di sebelah kiri, lalu klik perannya yang tepat di sebelah kanan!</p>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+                            <!-- Left: Tokoh -->
+                            <div class="space-y-2">
+                                <h4 class="text-xs font-bold text-amber-300 text-center">Tokoh Natal</h4>
+                                <div id="g5-characters-container" class="space-y-2">
+                                    <!-- JS filled -->
+                                </div>
+                            </div>
+                            <!-- Right: Peran -->
+                            <div class="space-y-2">
+                                <h4 class="text-xs font-bold text-amber-300 text-center">Peran / Tugas</h4>
+                                <div id="g5-roles-container" class="space-y-2">
+                                    <!-- JS filled -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- 9. BADGE PENGHARGAAN -->
+            <section id="screen-badge" class="screen-section hidden space-y-6 text-center">
+                <div class="max-w-md mx-auto bg-gradient-to-b from-slate-900 via-amber-950 to-slate-900 border-2 border-amber-400 rounded-3xl p-8 shadow-2xl glow-gold-lg relative overflow-hidden space-y-4">
+                    
+                    <div class="text-6xl animate-bounce my-2">🏅</div>
+                    <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold border border-amber-400/40">
+                        Penghargaan Istimewa
+                    </span>
+
+                    <h2 class="text-2xl font-bold text-amber-300">Badge Penghargaan</h2>
+                    <h3 class="text-lg font-extrabold text-yellow-200">"Anak Bersyukur dan Taat"</h3>
+
+                    <p class="text-xs text-slate-200 leading-relaxed bg-slate-950/60 p-4 rounded-2xl border border-amber-500/20">
+                        Selamat! Pembelajaran dan games tentang tema <strong>“Yesus Lahir Bagiku”</strong> telah kamu selesaikan dengan sangat baik. Semoga kamu terus bertumbuh menjadi anak yang bersyukur dan taat!
+                    </p>
+
+                    <div class="pt-2">
+                        <button onclick="navigateTo('refleksi')" class="px-6 py-3 rounded-2xl bg-amber-500 text-night-sky font-bold text-xs hover:bg-amber-400 transition shadow-lg">
+                            Lanjut ke Lembar Refleksi &rarr;
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 10. REFLEKSI ANAK -->
+            <section id="screen-refleksi" class="screen-section hidden space-y-6">
+                <div class="text-center space-y-2">
+                    <span class="px-3 py-1 bg-amber-500/20 text-amber-300 border border-amber-400/30 rounded-full text-xs font-bold">Langkah Refleksi</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-amber-400">Refleksi Hatiku</h2>
+                    <p class="text-xs md:text-sm text-slate-300">Tuliskan pengalaman dan pesan hatimu pada kertas catatan di bawah ini!</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    
+                    <!-- Note 1 -->
+                    <div class="bg-amber-100 text-slate-900 p-5 rounded-2xl shadow-xl note-rotate-1 border-2 border-amber-300 space-y-2">
+                        <div class="flex items-center gap-2 font-bold text-amber-900 text-sm">
+                            <span>✏️</span>
+                            <h3>1. Mengapa Yesus lahir ke dunia?</h3>
+                        </div>
+                        <textarea id="ref-input-1" rows="3" placeholder="Tuliskan jawabanmu di sini..." class="w-full bg-white/80 p-2.5 rounded-xl border border-amber-300 text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 resize-none"></textarea>
+                    </div>
+
+                    <!-- Note 2 -->
+                    <div class="bg-yellow-100 text-slate-900 p-5 rounded-2xl shadow-xl note-rotate-2 border-2 border-yellow-300 space-y-2">
+                        <div class="flex items-center gap-2 font-bold text-amber-900 text-sm">
+                            <span>❤️</span>
+                            <h3>2. Bagaimana perasaanmu mengetahui Yesus lahir bagimu?</h3>
+                        </div>
+                        <textarea id="ref-input-2" rows="3" placeholder="Tuliskan perasaan syukurmu..." class="w-full bg-white/80 p-2.5 rounded-xl border border-amber-300 text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 resize-none"></textarea>
+                    </div>
+
+                    <!-- Note 3 -->
+                    <div class="bg-amber-100 text-slate-900 p-5 rounded-2xl shadow-xl note-rotate-3 border-2 border-amber-300 space-y-2">
+                        <div class="flex items-center gap-2 font-bold text-amber-900 text-sm">
+                            <span>⭐</span>
+                            <h3>3. Apa yang dapat kamu lakukan untuk berterima kasih?</h3>
+                        </div>
+                        <textarea id="ref-input-3" rows="3" placeholder="Tindak nyata terima kasih kepada Yesus..." class="w-full bg-white/80 p-2.5 rounded-xl border border-amber-300 text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 resize-none"></textarea>
+                    </div>
+
+                    <!-- Note 4 -->
+                    <div class="bg-yellow-100 text-slate-900 p-5 rounded-2xl shadow-xl note-rotate-4 border-2 border-yellow-300 space-y-2">
+                        <div class="flex items-center gap-2 font-bold text-amber-900 text-sm">
+                            <span>📖</span>
+                            <h3>4. Sikap baik apa yang mau kamu lakukan di rumah & sekolah?</h3>
+                        </div>
+                        <textarea id="ref-input-4" rows="3" placeholder="Komitmen perilaku baikmu..." class="w-full bg-white/80 p-2.5 rounded-xl border border-amber-300 text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 resize-none"></textarea>
+                    </div>
+
+                </div>
+
+                <div class="flex justify-center gap-3 pt-2">
+                    <button onclick="saveReflections()" class="px-6 py-3 rounded-2xl bg-amber-500 text-night-sky font-bold text-xs hover:bg-amber-400 transition shadow-lg flex items-center gap-2">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                        <span>Simpan Refleksi</span>
+                    </button>
+                    <button onclick="navigateTo('afirmasi')" class="px-6 py-3 rounded-2xl bg-slate-800 border border-amber-500/40 text-amber-300 font-bold text-xs hover:bg-slate-700 transition shadow-lg">
+                        Lanjut ke Afirmasi Iman &rarr;
+                    </button>
+                </div>
+            </section>
+
+            <!-- 11. AFIRMASI IMAN -->
+            <section id="screen-afirmasi" class="screen-section hidden space-y-6 text-center">
+                <div class="max-w-xl mx-auto bg-gradient-to-b from-slate-900 via-amber-950 to-slate-900 border-2 border-amber-400 rounded-3xl p-8 shadow-2xl space-y-6 glow-gold">
+                    <div class="text-5xl text-amber-300">✨</div>
+                    
+                    <span class="px-3 py-1 bg-amber-500/20 text-amber-300 border border-amber-400/40 rounded-full text-xs font-bold uppercase tracking-wider">
+                        Afirmasi Iman
+                    </span>
+
+                    <h2 class="text-2xl md:text-3xl font-bold text-yellow-100">Pernyataan Imanku</h2>
+
+                    <blockquote class="text-base md:text-xl font-bold text-amber-200 leading-relaxed italic bg-slate-950/60 p-5 rounded-2xl border border-amber-500/30">
+                        “Saya bersyukur atas kelahiran Yesus untuk menebus dosa-dosa manusia, maka saya akan hidup taat kepada-Nya.”
+                    </blockquote>
+
+                    <div class="pt-2">
+                        <button onclick="triggerAffirmationCommitment()" class="px-8 py-4 rounded-2xl bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 text-night-sky font-extrabold text-sm md:text-base hover:scale-105 transition shadow-2xl flex items-center gap-2 mx-auto">
+                            <span>🙌 Aku Mau Taat kepada Tuhan!</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 12. BAGIAN DOA SYUKUR -->
+            <section id="screen-doa" class="screen-section hidden space-y-6">
+                <div class="text-center space-y-2">
+                    <span class="px-3 py-1 bg-amber-500/20 text-amber-300 border border-amber-400/30 rounded-full text-xs font-bold">Doa Syukur</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-amber-400">Doa Syukurku</h2>
+                    <p class="text-xs md:text-sm text-slate-300">Mari berdoa bersama untuk mengucap syukur kepada Tuhan Yesus.</p>
+                </div>
+
+                <div class="bg-gradient-to-b from-slate-900 via-slate-800 to-amber-950/60 border-2 border-amber-500/40 rounded-3xl p-6 md:p-8 shadow-2xl max-w-2xl mx-auto space-y-6">
+                    
+                    <!-- Candle Ambience Visual -->
+                    <div class="flex justify-center items-center gap-3 py-2">
+                        <div class="w-4 h-12 bg-amber-200 rounded-t-md relative flex justify-center">
+                            <div class="w-3 h-5 bg-amber-400 rounded-full candle-flame -top-5 absolute shadow-[0_0_15px_rgba(251,191,36,0.9)]"></div>
+                        </div>
+                        <span class="text-xs text-amber-300 font-semibold italic">Suasana Tenang & Khusyuk</span>
+                    </div>
+
+                    <!-- Prayer Text Box -->
+                    <div class="bg-slate-950/80 p-5 rounded-2xl border border-amber-500/30 space-y-3">
+                        <h3 class="font-bold text-amber-300 text-sm border-b border-amber-500/20 pb-2">Teks Doa Bersama:</h3>
+                        <p id="prayer-text-content" class="text-xs md:text-sm text-slate-100 leading-relaxed italic">
+                            “Tuhan Yesus yang baik, terima kasih karena Engkau lahir ke dunia untuk menyelamatkan manusia dari dosa. Terima kasih atas kasih-Mu yang besar bagiku. Tolong aku agar selalu taat kepada-Mu, rajin berdoa, mengasihi sesama, dan hidup sesuai kehendak-Mu. Aku bersyukur karena Engkau adalah Juru Selamatku. Amin.”
+                        </p>
+                    </div>
+
+                    <!-- Personal Prayer Input Area -->
+                    <div class="space-y-2">
+                        <label class="block text-xs font-bold text-amber-300">Tuliskan Doa Pribadimu Kepada Tuhan Yesus:</label>
+                        <textarea id="personal-prayer-input" rows="3" placeholder="Tuhan Yesus, aku mau berdoa..." class="w-full bg-slate-950/90 p-3 rounded-2xl border border-amber-500/30 text-xs text-slate-100 focus:outline-none focus:border-amber-400 resize-none"></textarea>
+                    </div>
+
+                    <!-- Action buttons -->
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <button onclick="speakText(document.getElementById('prayer-text-content').innerText)" class="px-4 py-2.5 rounded-xl bg-amber-500 text-night-sky text-xs font-bold hover:bg-amber-400 transition shadow-md flex items-center gap-2">
+                            <i class="fa-solid fa-volume-high"></i>
+                            <span>Dengarkan Doa</span>
+                        </button>
+                        <button onclick="savePersonalPrayer()" class="px-4 py-2.5 rounded-xl bg-slate-800 border border-amber-500/40 text-amber-300 text-xs font-bold hover:bg-slate-700 transition flex items-center gap-2">
+                            <i class="fa-solid fa-bookmark"></i>
+                            <span>Simpan Doa Pribadi</span>
+                        </button>
+                        <button onclick="navigateTo('penutup')" class="px-4 py-2.5 rounded-xl bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-500 transition shadow-md">
+                            Selesai & Ke Penutup &rarr;
+                        </button>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- 13. PENUTUP -->
+            <section id="screen-penutup" class="screen-section hidden space-y-6 text-center">
+                <div class="max-w-2xl mx-auto bg-gradient-to-b from-slate-900 via-slate-800 to-amber-950/80 border-2 border-amber-400 rounded-3xl p-8 shadow-2xl space-y-6">
+                    
+                    <div class="text-6xl my-2">🛖👶🏻⭐️</div>
+
+                    <h2 class="text-2xl md:text-3xl font-bold text-amber-300">Tuhan Yesus Mengasihimu!</h2>
+
+                    <p class="text-sm md:text-base text-slate-100 leading-relaxed font-medium bg-slate-950/60 p-5 rounded-2xl border border-amber-500/30">
+                        “Yesus lahir bagiku karena Allah sangat mengasihiku. Aku mau bersyukur dan hidup taat kepada-Nya setiap hari!”
+                    </p>
+
+                    <!-- Characters Group Visual -->
+                    <div class="text-3xl tracking-widest py-2 animate-bounce">
+                        👩🏻‍🍼 🧔🏻‍♂️ 👶🏻 👼🏻 🧔🏻 🤴🏽
+                    </div>
+
+                    <!-- Navigation Action Buttons -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+                        <button onclick="navigateTo('hero')" class="p-3 rounded-2xl bg-slate-800 border border-amber-500/40 text-amber-300 font-bold text-xs hover:bg-amber-500 hover:text-night-sky transition shadow">
+                            🔄 Ulangi Materi
+                        </button>
+                        <button onclick="navigateTo('games')" class="p-3 rounded-2xl bg-slate-800 border border-amber-500/40 text-amber-300 font-bold text-xs hover:bg-amber-500 hover:text-night-sky transition shadow">
+                            🎮 Main Games Lagi
+                        </button>
+                        <button onclick="navigateTo('badge')" class="p-3 rounded-2xl bg-slate-800 border border-amber-500/40 text-amber-300 font-bold text-xs hover:bg-amber-500 hover:text-night-sky transition shadow">
+                            🏅 Lihat Badge
+                        </button>
+                        <button onclick="showToast('Terima kasih sudah belajar hari ini! Tuhan Yesus memberkati.')" class="p-3 rounded-2xl bg-amber-500 text-night-sky font-bold text-xs hover:bg-amber-400 transition shadow">
+                            ✅ Selesai
+                        </button>
+                    </div>
+
+                </div>
+            </section>
+
+        </main>
+
+        <!-- FOOTER NAVIGATION -->
+        <footer class="bg-slate-900/90 border-t border-amber-500/30 py-3 px-4 z-40 backdrop-blur-md">
+            <div class="max-w-5xl mx-auto flex items-center justify-between">
+                <button onclick="navigateStep(-1)" class="px-4 py-2 rounded-xl bg-slate-800 border border-amber-500/30 text-amber-300 text-xs font-bold hover:bg-slate-700 transition flex items-center gap-1">
+                    <i class="fa-solid fa-chevron-left"></i>
+                    <span>Sebelumnya</span>
+                </button>
+
+                <div class="text-xs text-amber-200/80 font-bold hidden sm:block">
+                    Pendidikan Agama Kristen Kelas 5 SD
+                </div>
+
+                <button onclick="navigateStep(1)" class="px-4 py-2 rounded-xl bg-amber-500 text-night-sky text-xs font-bold hover:bg-amber-400 transition flex items-center gap-1 shadow-md">
+                    <span>Selanjutnya</span>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- TOAST NOTIFICATION MODAL -->
+    <div id="toast-modal" class="fixed bottom-16 left-1/2 -translate-x-1/2 z-50 bg-amber-500 text-night-sky font-bold px-6 py-3 rounded-2xl shadow-2xl text-xs sm:text-sm opacity-0 pointer-events-none transition-all duration-300 border-2 border-yellow-200 flex items-center gap-2">
+        <span id="toast-icon">✨</span>
+        <span id="toast-message">Pesan notifikasi</span>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        
+        // Navigation Screen Order
+        const SCREENS = [
+            'hero', 'peta', 'tujuan', 'cerita', 'ringkasan', 
+            'ayat', 'tokoh', 'games', 'badge', 'refleksi', 
+            'afirmasi', 'doa', 'penutup'
+        ];
+
+        let currentScreenIndex = 0;
+        let isAudioBgPlaying = false;
+        let audioContext = null;
+
+        // Avatar guides text per screen
+        const AVATAR_GUIDES = {
+            'hero': 'Shalom! Halo teman-teman kelas 5! Yuk kita belajar tentang kasih Allah melalui kelahiran Tuhan Yesus!',
+            'peta': 'Ini adalah Peta Belajar kita menuju Betlehem. Kamu bisa memilih bagian mana saja!',
+            'tujuan': 'Mari perhatikan 6 tujuan pembelajaran kita hari ini!',
+            'cerita': 'Ayo dengarkan kisah Alkitab kelahiran Tuhan Yesus dari Lukas 2:11-14!',
+            'ringkasan': 'Buka kartu-kartu di bawah ini untuk memahami 6 pesan penting kelahiran Yesus.',
+            'ayat': 'Hafalkan ayat utama Lukas 2:11 dan ayat pendukung Yohanes 3:16 ya!',
+            'tokoh': 'Klik setiap tokoh Natal untuk berkenalan dengan mereka!',
+            'games': 'Selesaikan 5 mini games ini untuk mendapatkan Badge Penghargaan Emas!',
+            'badge': 'Selamat! Kamu berhasil meraih Badge Anak Bersyukur dan Taat!',
+            'refleksi': 'Tuliskan isi hatimu pada kertas refleksi di bawah ini.',
+            'afirmasi': 'Ucapkan kalimat komitmen imanmu dengan penuh sukacita!',
+            'doa': 'Mari kita berdoa dan mengucap syukur kepada Tuhan Yesus.',
+            'penutup': 'Luar biasa! Kamu sudah menyelesaikan seluruh pembelajaran hari ini.'
+        };
+
+        // --- BIBLE STORY SCENES (6 SCENES) ---
+        const STORY_SCENES = [
+            {
+                title: "Scene 1: Kabar Sukacita",
+                text: "Pada suatu malam, malaikat Tuhan datang membawa kabar sukacita. Kabar itu sangat penting bagi semua manusia, karena Allah mengutus Yesus Kristus ke dunia sebagai Juru Selamat.",
+                emoji: "👼🏻✨",
+                badge: "Kabar Sukacita",
+                verse: null
+            },
+            {
+                title: "Scene 2: Para Gembala di Padang",
+                text: "Para gembala sedang menjaga kawanan domba pada malam hari. Tiba-tiba, malaikat Tuhan berdiri di dekat mereka dan kemuliaan Tuhan bersinar. Para gembala merasa takut, tetapi malaikat menyampaikan kabar yang menggembirakan.",
+                emoji: "🧔🏻🐑🌌",
+                badge: "Gembala di Padang",
+                verse: null
+            },
+            {
+                title: "Scene 3: Yesus Telah Lahir",
+                text: "Malaikat berkata bahwa hari itu telah lahir seorang Juru Selamat, yaitu Kristus Tuhan, di kota Daud. Kelahiran Yesus adalah tanda kasih Allah kepada manusia.",
+                emoji: "⭐️🛖👶🏻",
+                badge: "Lahir di Betlehem",
+                verse: "Lukas 2:11 — “Hari ini telah lahir bagimu Juruselamat, yaitu Kristus, Tuhan, di kota Daud.”"
+            },
+            {
+                title: "Scene 4: Pujian Para Malaikat",
+                text: "Tiba-tiba tampak banyak bala tentara surga memuji Allah. Mereka menyanyikan pujian kemuliaan bagi Allah di tempat yang mahatinggi dan damai sejahtera di bumi.",
+                emoji: "👼🏻🎶✨",
+                badge: "Bala Tentara Surga",
+                verse: "Lukas 2:14 — “Kemuliaan bagi Allah di tempat yang mahatinggi dan damai sejahtera di bumi di antara manusia yang berkenan kepada-Nya.”"
+            },
+            {
+                title: "Scene 5: Bayi Yesus di Palungan",
+                text: "Para gembala segera pergi ke Betlehem. Mereka menemukan Maria, Yusuf, dan bayi Yesus yang dibungkus kain lampin serta terbaring di palungan. Mereka melihat bahwa firman Tuhan itu benar.",
+                emoji: "👩🏻‍🍼🧔🏻‍♂️👶🏻",
+                badge: "Melihat Bayi Yesus",
+                verse: null
+            },
+            {
+                title: "Scene 6: Bersyukur kepada Tuhan",
+                text: "Para gembala pulang sambil memuji dan memuliakan Allah. Mereka bersyukur atas segala sesuatu yang telah mereka dengar dan lihat tentang kelahiran Tuhan Yesus.",
+                emoji: "🙌🏻❤️✨",
+                badge: "Pulang dengan Bersyukur",
+                verse: null
+            }
+        ];
+        let currentSceneIndex = 0;
+
+        // --- NATIVITY CHARACTERS DATA ---
+        const CHARACTERS = [
+            {
+                name: "Maria",
+                role: "Ibu Yesus yang Taat",
+                avatar: "👩🏻‍🍼",
+                desc: "Maria adalah ibu Yesus yang taat kepada kehendak Allah. Saat malaikat mengabarkan bahwa ia akan melahirkan Juru Selamat, Maria merespons dengan rasa hormat dan percaya."
+            },
+            {
+                name: "Yusuf",
+                role: "Tunangan Maria yang Setia",
+                avatar: "🧔🏻‍♂️",
+                desc: "Yusuf adalah tunangan Maria yang tulus dan taat. Ia mendengarkan pesan malaikat Tuhan melalui mimpi dan dengan setia menjaga Maria serta bayi Yesus."
+            },
+            {
+                name: "Malaikat",
+                role: "Pembawa Kabar Sukacita",
+                avatar: "👼🏻",
+                desc: "Malaikat Tuhan diutus menyampaikan berita paling menggembirakan bagi dunia, yaitu kelahiran Yesus Kristus sebagai Juru Selamat manusia."
+            },
+            {
+                name: "Para Gembala",
+                role: "Saksi Pertama Kelahiran Yesus",
+                avatar: "🧔🏻🐑",
+                desc: "Orang-orang sederhana yang pertama kali mendengar berita kelahiran Yesus di padang rumput. Mereka segera pergi menyembah Yesus dan pulang membawa sukacita."
+            },
+            {
+                name: "Orang Majus",
+                role: "Orang Bijak dari Timur",
+                avatar: "🤴🏽🎁",
+                desc: "Orang-orang bijaksana dari Timur yang mengikuti petunjuk bintang Betlehem untuk menyembah Bayi Yesus dan mempersembahkan emas, kemenyan, dan mur."
+            },
+            {
+                name: "Bayi Yesus",
+                role: "Juru Selamat Dunia",
+                avatar: "👶🏻⭐️",
+                desc: "Anak Allah yang lahir di kandang Betlehem dalam kesederhanaan untuk membawa keselamatan dan bukti kasih Allah yang nyata bagi manusia."
+            }
+        ];
+
+        function playSynthTone(freq, type = 'sine', duration = 0.2) {
+            try {
+                if (!audioContext) {
+                    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                const osc = audioContext.createOscillator();
+                const gain = audioContext.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioContext.currentTime);
+                gain.gain.setValueAtTime(0.2, audioContext.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioContext.destination);
+                osc.start();
+                osc.stop(audioContext.currentTime + duration);
+            } catch(e) {}
+        }
+
+        function playSuccessChime() {
+            playSynthTone(523.25, 'triangle', 0.15); // C5
+            setTimeout(() => playSynthTone(659.25, 'triangle', 0.15), 100); // E5
+            setTimeout(() => playSynthTone(783.99, 'triangle', 0.3), 200); // G5
+        }
+
+        function playBellRing() {
+            playSynthTone(880, 'sine', 0.4);
+            setTimeout(() => playSynthTone(1046.5, 'sine', 0.6), 150);
+        }
+
+        // --- NAVIGATION ENGINE ---
+        function navigateTo(screenId) {
+            const targetIndex = SCREENS.indexOf(screenId);
+            if (targetIndex === -1) return;
+
+            currentScreenIndex = targetIndex;
+
+            // Hide all screens
+            document.querySelectorAll('.screen-section').forEach(el => el.classList.add('hidden'));
+            
+            // Show target screen
+            const targetEl = document.getElementById(`screen-${screenId}`);
+            if (targetEl) targetEl.classList.remove('hidden');
+
+            // Update Progress Bar
+            const progressPct = Math.round(((targetIndex) / (SCREENS.length - 1)) * 100);
+            document.getElementById('progress-bar-inner').style.width = `${progressPct}%`;
+            document.getElementById('progress-text').innerText = `${progressPct}%`;
+
+            // Update Avatar Guide Text
+            if (AVATAR_GUIDES[screenId]) {
+                document.getElementById('avatar-guide-text').innerText = AVATAR_GUIDES[screenId];
+            }
+
+            // Scroll top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            playSynthTone(440, 'sine', 0.1);
+        }
+
+        function navigateStep(direction) {
+            let nextIndex = currentScreenIndex + direction;
+            if (nextIndex < 0) nextIndex = 0;
+            if (nextIndex >= SCREENS.length) nextIndex = SCREENS.length - 1;
+            navigateTo(SCREENS[nextIndex]);
+        }
+
+        // --- TEXT TO SPEECH (INDONESIAN NARRATION) ---
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'id-ID';
+                utterance.rate = 0.95;
+                window.speechSynthesis.speak(utterance);
+                showToast("🔊 Memutar audio narasi...", "📢");
+            } else {
+                showToast("Fitur audio tidak didukung di peramban ini.", "⚠️");
+            }
+        }
+
+        // --- BIBLE STORY LOGIC ---
+        function updateSceneUI() {
+            const scene = STORY_SCENES[currentSceneIndex];
+            document.getElementById('scene-title').innerText = scene.title;
+            document.getElementById('scene-text').innerText = scene.text;
+            document.getElementById('scene-emoji').innerText = scene.emoji;
+            document.getElementById('scene-title-badge').innerText = scene.badge;
+            document.getElementById('scene-counter-badge').innerText = `Scene ${currentSceneIndex + 1} dari ${STORY_SCENES.length}`;
+
+            const verseBox = document.getElementById('scene-verse-box');
+            if (scene.verse) {
+                document.getElementById('scene-verse-text').innerText = scene.verse;
+                verseBox.classList.remove('hidden');
+            } else {
+                verseBox.classList.add('hidden');
+            }
+
+            // Dots update
+            const dotsContainer = document.getElementById('scene-dots');
+            dotsContainer.innerHTML = '';
+            STORY_SCENES.forEach((_, idx) => {
+                const dot = document.createElement('div');
+                dot.className = `w-2.5 h-2.5 rounded-full ${idx === currentSceneIndex ? 'bg-amber-400 w-5' : 'bg-slate-700'} transition-all`;
+                dotsContainer.appendChild(dot);
+            });
+        }
+
+        function nextScene() {
+            if (currentSceneIndex < STORY_SCENES.length - 1) {
+                currentSceneIndex++;
+                updateSceneUI();
+                playSynthTone(500, 'sine', 0.1);
+            } else {
+                showToast("Selesai membaca cerita! Mari lanjut ke Ringkasan Materi.", "🎉");
+                navigateTo('ringkasan');
+            }
+        }
+
+        function prevScene() {
+            if (currentSceneIndex > 0) {
+                currentSceneIndex--;
+                updateSceneUI();
+                playSynthTone(350, 'sine', 0.1);
+            }
+        }
+
+        function speakSceneText() {
+            speakText(STORY_SCENES[currentSceneIndex].text);
+        }
+
+        function toggleSceneVerse() {
+            const verseBox = document.getElementById('scene-verse-box');
+            verseBox.classList.toggle('hidden');
+        }
+
+        // --- FLIP CARD LOGIC ---
+        function flipCard(cardEl) {
+            const inner = cardEl.querySelector('.transform-style-3d');
+            inner.classList.toggle('flipped');
+            playSynthTone(600, 'triangle', 0.1);
+        }
+
+        // --- NATIVITY CHARACTERS LOGIC ---
+        function selectCharacter(index) {
+            const char = CHARACTERS[index];
+            document.getElementById('char-detail-avatar').innerText = char.avatar;
+            document.getElementById('char-detail-name').innerText = char.name;
+            document.getElementById('char-detail-role').innerText = char.role;
+            document.getElementById('char-detail-desc').innerText = char.desc;
+            playSynthTone(700, 'sine', 0.15);
+        }
+
+        function speakCharacterDesc() {
+            const name = document.getElementById('char-detail-name').innerText;
+            const desc = document.getElementById('char-detail-desc').innerText;
+            speakText(`${name}. ${desc}`);
+        }
+
+
+        // --- GAME 1: ORDER STORY ---
+        const G1_ITEMS = [
+            "Malaikat menyampaikan kabar kepada Maria.",
+            "Yusuf menerima pesan dari malaikat.",
+            "Yesus lahir di Betlehem.",
+            "Malaikat memberi kabar kepada para gembala.",
+            "Para gembala pergi menemui bayi Yesus.",
+            "Para gembala pulang dengan sukacita."
+        ];
+        let g1CurrentOrder = [2, 0, 4, 1, 3, 5]; // Shuffled initially
+
+        function renderGame1() {
+            const container = document.getElementById('g1-cards-container');
+            container.innerHTML = '';
+            g1CurrentOrder.forEach((itemIdx, pos) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = "p-3 bg-slate-800 border border-amber-500/30 rounded-xl flex items-center justify-between text-xs font-semibold text-slate-100 hover:border-amber-400";
+                itemDiv.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <span class="w-6 h-6 rounded-full bg-amber-500 text-night-sky flex items-center justify-center font-bold text-[10px]">${pos + 1}</span>
+                        <span>${G1_ITEMS[itemIdx]}</span>
+                    </div>
+                    <div class="flex gap-1">
+                        <button onclick="moveGame1Item(${pos}, -1)" class="p-1 px-2 bg-slate-700 rounded hover:bg-amber-500 hover:text-night-sky">▲</button>
+                        <button onclick="moveGame1Item(${pos}, 1)" class="p-1 px-2 bg-slate-700 rounded hover:bg-amber-500 hover:text-night-sky">▼</button>
+                    </div>
+                `;
+                container.appendChild(itemDiv);
+            });
+        }
+
+        function moveGame1Item(index, dir) {
+            const newIndex = index + dir;
+            if (newIndex < 0 || newIndex >= g1CurrentOrder.length) return;
+            const temp = g1CurrentOrder[index];
+            g1CurrentOrder[index] = g1CurrentOrder[newIndex];
+            g1CurrentOrder[newIndex] = temp;
+            renderGame1();
+            playSynthTone(400, 'sine', 0.05);
+        }
+
+        function checkGame1() {
+            let isCorrect = true;
+            for (let i = 0; i < g1CurrentOrder.length; i++) {
+                if (g1CurrentOrder[i] !== i) {
+                    isCorrect = false;
+                    break;
+                }
+            }
+            if (isCorrect) {
+                playSuccessChime();
+                showToast("Hebat! Urutan cerita kelahiran Yesus sudah benar!", "🌟");
+            } else {
+                playSynthTone(200, 'sawtooth', 0.2);
+                showToast("Coba lagi ya! Perhatikan alur ceritanya.", "💡");
+            }
+        }
+
+        // --- GAME 2: TEBAK TOKOH ---
+        const G2_QUESTIONS = [
+            { q: "Aku menjaga domba di padang pada malam hari. Siapakah aku?", a: "Gembala", options: ["Gembala", "Malaikat", "Orang Majus", "Yusuf"] },
+            { q: "Aku membawa kabar sukacita dari Allah. Siapakah aku?", a: "Malaikat", options: ["Maria", "Malaikat", "Gembala", "Orang Majus"] },
+            { q: "Aku lahir di Betlehem dan disebut Juru Selamat. Siapakah aku?", a: "Yesus", options: ["Yusuf", "Yesus", "Malaikat", "Gembala"] },
+            { q: "Aku ibu Yesus yang taat kepada kehendak Allah. Siapakah aku?", a: "Maria", options: ["Maria", "Elisabet", "Marta", "RUT"] },
+            { q: "Aku datang dari Timur untuk menyembah Yesus. Siapakah aku?", a: "Orang Majus", options: ["Gembala", "Malaikat", "Orang Majus", "Prajurit"] }
+        ];
+        let g2Index = 0;
+
+        function renderGame2() {
+            const q = G2_QUESTIONS[g2Index];
+            document.getElementById('g2-question-text').innerText = q.q;
+            document.getElementById('g2-progress-text').innerText = `Soal ${g2Index + 1} dari ${G2_QUESTIONS.length}`;
+
+            const container = document.getElementById('g2-options-container');
+            container.innerHTML = '';
+            q.options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = "p-3 rounded-xl bg-slate-800 border border-amber-500/30 text-amber-300 font-bold text-xs hover:bg-amber-500 hover:text-night-sky transition";
+                btn.innerText = opt;
+                btn.onclick = () => answerGame2(opt);
+                container.appendChild(btn);
+            });
+        }
+
+        function answerGame2(chosen) {
+            const q = G2_QUESTIONS[g2Index];
+            if (chosen === q.a) {
+                playSuccessChime();
+                showToast("Benar sekali! ❤️", "✨");
+                g2Index++;
+                if (g2Index < G2_QUESTIONS.length) {
+                    renderGame2();
+                } else {
+                    showToast("Selamat! Kamu berhasil menjawab semua soal Game 2!", "🎉");
+                    g2Index = 0;
+                    renderGame2();
+                }
+            } else {
+                playSynthTone(200, 'sawtooth', 0.2);
+                showToast("Perhatikan petunjuknya lagi ya!", "💡");
+            }
+        }
+
+        // --- GAME 3: MEMILAH SIKAP ---
+        const G3_ACTIONS = [
+            { text: "Berdoa kepada Tuhan", good: true },
+            { text: "Mengejek teman", good: false },
+            { text: "Taat kepada orang tua", good: true },
+            { text: "Malas berdoa", good: false },
+            { text: "Mengasihi teman", good: true },
+            { text: "Tidak mau berbagi", good: false },
+            { text: "Rajin beribadah", good: true },
+            { text: "Berbohong", good: false },
+            { text: "Mau menolong orang lain", good: true },
+            { text: "Melawan orang tua", good: false }
+        ];
+        let g3Index = 0;
+        let g3GoodCount = 0;
+        let g3BadCount = 0;
+
+        function renderGame3() {
+            if (g3Index < G3_ACTIONS.length) {
+                document.getElementById('g3-item-text').innerText = G3_ACTIONS[g3Index].text;
+            } else {
+                document.getElementById('g3-item-text').innerText = "Selesai! Bersyukur kepada Tuhan ditunjukkan melalui sikap yang baik.";
+                showToast("Luar biasa! Kamu pintar memilah sikap baik!", "⭐");
+            }
+            document.getElementById('g3-good-count').innerText = `${g3GoodCount} Sikap`;
+            document.getElementById('g3-bad-count').innerText = `${g3BadCount} Sikap`;
+        }
+
+        function sortGame3Action(isChosenGood) {
+            if (g3Index >= G3_ACTIONS.length) return;
+
+            const item = G3_ACTIONS[g3Index];
+            if (item.good === isChosenGood) {
+                playSuccessChime();
+                if (item.good) g3GoodCount++;
+                else g3BadCount++;
+                showToast("Tepat sekali!", "✨");
+            } else {
+                playSynthTone(200, 'sawtooth', 0.2);
+                showToast("Kurang tepat, coba pikirkan lagi ya!", "💡");
+            }
+            g3Index++;
+            renderGame3();
+        }
+
+        // --- GAME 4: LENGKAPI AYAT ---
+        function answerGame4(choice) {
+            if (choice === 'Juruselamat') {
+                playSuccessChime();
+                showToast("Benar! Yesus adalah Juruselamat dunia.", "🙌");
+            } else {
+                playSynthTone(200, 'sawtooth', 0.2);
+                showToast("Coba baca ayatnya sekali lagi ya!", "💡");
+            }
+        }
+
+        // --- GAME 5: COCOKKAN TOKOH & PERAN ---
+        const G5_PAIRS = [
+            { char: "Maria", role: "Ibu Yesus" },
+            { char: "Yusuf", role: "Taat pesan malaikat" },
+            { char: "Malaikat", role: "Pembawa kabar sukacita" },
+            { char: "Gembala", role: "Mendengar kabar kelahiran" },
+            { char: "Orang Majus", role: "Datang menyembah Yesus" },
+            { char: "Yesus", role: "Juru Selamat manusia" }
+        ];
+        let g5SelectedChar = null;
+        let g5SelectedRole = null;
+
+        function renderGame5() {
+            const charBox = document.getElementById('g5-characters-container');
+            const roleBox = document.getElementById('g5-roles-container');
+            charBox.innerHTML = '';
+            roleBox.innerHTML = '';
+
+            G5_PAIRS.forEach((pair, idx) => {
+                const cBtn = document.createElement('button');
+                cBtn.className = "w-full p-2.5 rounded-xl bg-slate-800 border border-amber-500/30 text-amber-300 font-bold text-xs hover:bg-amber-500 hover:text-night-sky transition text-left";
+                cBtn.innerText = pair.char;
+                cBtn.onclick = () => selectG5Char(pair.char, cBtn);
+                charBox.appendChild(cBtn);
+
+                const rBtn = document.createElement('button');
+                rBtn.className = "w-full p-2.5 rounded-xl bg-slate-800 border border-amber-500/30 text-amber-300 font-bold text-xs hover:bg-amber-500 hover:text-night-sky transition text-left";
+                rBtn.innerText = pair.role;
+                rBtn.onclick = () => selectG5Role(pair.role, rBtn);
+                roleBox.appendChild(rBtn);
+            });
+        }
+
+        function selectG5Char(charName, btn) {
+            g5SelectedChar = charName;
+            showToast(`Dipilih: ${charName}`, "👤");
+            checkG5Pair();
+        }
+
+        function selectG5Role(roleText, btn) {
+            g5SelectedRole = roleText;
+            showToast(`Dipilih: ${roleText}`, "📜");
+            checkG5Pair();
+        }
+
+        function checkG5Pair() {
+            if (g5SelectedChar && g5SelectedRole) {
+                const match = G5_PAIRS.find(p => p.char === g5SelectedChar && p.role === g5SelectedRole);
+                if (match) {
+                    playSuccessChime();
+                    showToast(`Pasangan Tepat! ${g5SelectedChar} ➔ ${g5SelectedRole}`, "✨");
+                } else {
+                    playSynthTone(200, 'sawtooth', 0.2);
+                    showToast("Pasangan belum cocok, coba lagi!", "💡");
+                }
+                g5SelectedChar = null;
+                g5SelectedRole = null;
+            }
+        }
+
+        function switchGame(gameNum) {
+            document.querySelectorAll('.minigame-box').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`minigame-${gameNum}`).classList.remove('hidden');
+
+            document.querySelectorAll('.game-tab-btn').forEach((btn, idx) => {
+                if (idx === gameNum - 1) {
+                    btn.className = "game-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-amber-500 text-night-sky";
+                } else {
+                    btn.className = "game-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-800 border border-amber-500/30 text-amber-300";
+                }
+            });
+        }
+
+        // --- AFFIRMATION & REFLECTION SAVING ---
+        function triggerAffirmationCommitment() {
+            playBellRing();
+            showToast("Tuhan Yesus mengasihiku! Moga imanku makin kuat!", "🙌");
+        }
+
+        function saveReflections() {
+            playSynthTone(600, 'triangle', 0.2);
+            showToast("Catatan refleksi berhasil disimpan di memorimu!", "💾");
+        }
+
+        function savePersonalPrayer() {
+            const prayerInput = document.getElementById('personal-prayer-input').value;
+            if (prayerInput.trim()) {
+                playSuccessChime();
+                showToast("Doa pribadimu telah disimpan. Tuhan Yesus mendengar doamu!", "🙏");
+            } else {
+                showToast("Tuliskan dulu doamu pada kolom di atas ya!", "✏️");
+            }
+        }
+
+        // --- BACKGROUND MUSIC SYNTHESIS ---
+        let bgAudioInterval = null;
+        function toggleAudioBg() {
+            isAudioBgPlaying = !isAudioBgPlaying;
+            const btn = document.getElementById('audio-toggle-btn');
+
+            if (isAudioBgPlaying) {
+                btn.classList.add('bg-amber-500', 'text-night-sky');
+                showToast("🎵 Musik Latar Natal Aktif", "🎶");
+                
+                // Simple Christmas Lullaby Notes Loop
+                const notes = [523, 659, 783, 659, 523, 587, 659, 523];
+                let noteIdx = 0;
+                bgAudioInterval = setInterval(() => {
+                    playSynthTone(notes[noteIdx], 'sine', 0.4);
+                    noteIdx = (noteIdx + 1) % notes.length;
+                }, 1200);
+
+            } else {
+                btn.classList.remove('bg-amber-500', 'text-night-sky');
+                if (bgAudioInterval) clearInterval(bgAudioInterval);
+                showToast("🔇 Musik Latar Dimatikan", "🔇");
+            }
+        }
+
+        // --- TOAST NOTIFICATION HELPERS ---
+        function showToast(msg, icon = "✨") {
+            const modal = document.getElementById('toast-modal');
+            document.getElementById('toast-message').innerText = msg;
+            document.getElementById('toast-icon').innerText = icon;
+
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+            }, 3000);
+        }
+
+        // --- BACKGROUND STARS GENERATOR ---
+        function generateStarfield() {
+            const container = document.getElementById('starfield');
+            container.innerHTML = '';
+            for (let i = 0; i < 70; i++) {
+                const star = document.createElement('div');
+                star.className = 'star-bg';
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.left = `${Math.random() * 100}%`;
+                const size = Math.random() * 3 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.setProperty('--duration', `${Math.random() * 3 + 2}s`);
+                container.appendChild(star);
+            }
+        }
+
+        // --- INITIALIZATION ---
+        window.onload = function() {
+            generateStarfield();
+            updateSceneUI();
+            renderGame1();
+            renderGame2();
+            renderGame3();
+            renderGame5();
+            navigateTo('hero');
+        };
+    </script>
+</body>
+</html>
